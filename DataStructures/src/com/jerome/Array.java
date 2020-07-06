@@ -77,7 +77,7 @@ public class Array<E> {
     public void add(int index, E e) {
 
         if(index < 0 || index > size) {
-            throw new IllegalArgumentException("add fail2");
+            throw new IllegalArgumentException("add fail2，Illegal index");
         }
 
         if(size == data.length) {
@@ -99,9 +99,25 @@ public class Array<E> {
      */
     public E get(int index) {
         if(index < 0 || index >= size) {
-            throw new IllegalArgumentException("get fail1");
+            throw new IllegalArgumentException("get fail1，Illegal index");
         }
         return data[index];
+    }
+
+    /**
+     * 获取尾部的值
+     * @return 末尾的值
+     */
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    /**
+     * 获取头部的值
+     * @return 头部的值
+     */
+    public E getFirst() {
+        return get(0);
     }
 
     /**
@@ -111,7 +127,7 @@ public class Array<E> {
      */
     public void set(int index, E e) {
         if(index < 0 || index >= size) {
-            throw new IllegalArgumentException("set fail1");
+            throw new IllegalArgumentException("set fail1，Illegal index");
         }
         data[index] = e;
     }
@@ -136,7 +152,7 @@ public class Array<E> {
      */
     public E remove(int index) {
         if(index < 0 || index >= size) {
-            throw new IllegalArgumentException("remove fail1");
+            throw new IllegalArgumentException("remove fail1，Illegal index");
         }
 
         E ret = data[index];
