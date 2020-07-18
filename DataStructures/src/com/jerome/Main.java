@@ -23,13 +23,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int opCount = 10000;
-        LoopQueue<Integer> Lqueue = new LoopQueue<>();
-        double time1 = testQueue(Lqueue, opCount);
-        System.out.println(time1);
+        LinkedListQueue<Integer> linkedList = new LinkedListQueue<>();
 
-        ArrayQueue<Integer> Aqueue = new ArrayQueue<>();
-        double time2 = testQueue(Aqueue, opCount);
-        System.out.println(time2);
+        for (int i = 0; i < 10; i++) {
+            linkedList.enqueue(i);
+            System.out.println(linkedList);
+            if(i % 3 == 0) {
+                linkedList.dequeue();
+                System.out.println(linkedList);
+            }
+        }
+
     }
 }
