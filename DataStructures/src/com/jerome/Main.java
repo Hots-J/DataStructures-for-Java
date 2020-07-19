@@ -6,7 +6,7 @@ public class Main {
 
     private static double testQueue(Queue<Integer> q, int opCount) {
 
-        long startTime  = System.nanoTime();
+        long startTime = System.nanoTime();
 
         Random random = new Random();
         for (int i = 0; i < opCount; i++) {
@@ -23,16 +23,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LinkedListQueue<Integer> linkedList = new LinkedListQueue<>();
-
-        for (int i = 0; i < 10; i++) {
-            linkedList.enqueue(i);
-            System.out.println(linkedList);
-            if(i % 3 == 0) {
-                linkedList.dequeue();
-                System.out.println(linkedList);
-            }
+        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
+        int[] arr = {5, 3, 6, 8, 4, 2};
+        for (int num : arr) {
+            binarySearchTree.add(num);
         }
+
+        binarySearchTree.preOrder();
+        binarySearchTree.preOrderNR();
+
+        System.out.println(binarySearchTree.contains(10));
 
     }
 }
