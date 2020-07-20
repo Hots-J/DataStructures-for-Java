@@ -1,5 +1,6 @@
 package com.jerome;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
@@ -24,15 +25,16 @@ public class Main {
     public static void main(String[] args) {
 
         BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
-        int[] arr = {5, 3, 6, 8, 4, 2};
-        for (int num : arr) {
-            binarySearchTree.add(num);
+//        int[] a = {37, 17, 34, 35, 37};
+        Random random = new Random();
+        for (int i = 0; i < 1000; i++) {
+//            binarySearchTree.add(a[i]);
+            binarySearchTree.add(random.nextInt(5000));
         }
-
-        binarySearchTree.preOrder();
-        binarySearchTree.preOrderNR();
-
-        System.out.println(binarySearchTree.contains(10));
-
+        ArrayList<Integer> arr = new ArrayList<>();
+        while (!binarySearchTree.isEmpty()){
+            arr.add(binarySearchTree.removeMax());
+        }
+        System.out.println(arr);
     }
 }
