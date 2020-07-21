@@ -24,17 +24,28 @@ public class Main {
 
     public static void main(String[] args) {
 
-        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        int[] array = {37};
+        for(int a : array) {
+            linkedList.addFirst(a);
+        }
+        System.out.println(linkedList);
+        linkedList.removeElement(37);
+        linkedList.removeElement(37);
+        System.out.println(linkedList);
+
+
+//        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
 //        int[] a = {37, 17, 34, 35, 37};
-        Random random = new Random();
-        for (int i = 0; i < 1000; i++) {
+//        Random random = new Random();
+//        for (int i = 0; i < 1000; i++) {
 //            binarySearchTree.add(a[i]);
-            binarySearchTree.add(random.nextInt(5000));
-        }
-        ArrayList<Integer> arr = new ArrayList<>();
-        while (!binarySearchTree.isEmpty()){
-            arr.add(binarySearchTree.removeMax());
-        }
-        System.out.println(arr);
+//            binarySearchTree.add(random.nextInt(5000));
+//        }
+//        ArrayList<Integer> arr = new ArrayList<>();
+//        while (!binarySearchTree.isEmpty()){
+//            arr.add(binarySearchTree.removeMax());
+//        }
+//        System.out.println(arr);
     }
 }

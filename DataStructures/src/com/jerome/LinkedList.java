@@ -185,6 +185,25 @@ public class LinkedList<E> {
         return remove(size - 1);
     }
 
+    /**
+     * 删除链表中元素为e的节点
+     *
+     * @param e
+     */
+    public void removeElement(E e) {
+        Node prev = dummyHead;
+        for (int i = 0; i < size; i++) {
+            if (prev.next.e.equals(e)) {
+                Node delNode = prev.next;
+                prev.next = delNode.next;
+                delNode.next = null;
+                size--;
+                break;
+            }
+            prev = prev.next;
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
