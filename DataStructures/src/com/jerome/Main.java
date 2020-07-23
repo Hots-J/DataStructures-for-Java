@@ -24,15 +24,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        int[] array = {37};
-        for(int a : array) {
-            linkedList.addFirst(a);
+        ArrayList<String> words = new ArrayList<>();
+        if(FileOperation.readFile("pride-and-prejudice.txt", words)) {
+            System.out.println("total words: " + words.size());
+
+            BSTMap<String, Integer> bstMap = new BSTMap<>();
+            for(String word : words) {
+                if(bstMap.contains(word)) {
+                    bstMap.set(word, bstMap.get(word) + 1);
+                } else {
+                    bstMap.add(word, 1);
+                }
+            }
+            System.out.println(bstMap.getSize());
+            System.out.println(bstMap.get("pride"));
+            bstMap.remove("pride");
+            System.out.println(bstMap.get("pride"));
+
         }
-        System.out.println(linkedList);
-        linkedList.removeElement(37);
-        linkedList.removeElement(37);
-        System.out.println(linkedList);
 
 
 //        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
