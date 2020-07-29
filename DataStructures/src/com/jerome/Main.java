@@ -5,18 +5,30 @@ import java.util.Random;
 
 public class Main {
 
-    private static double testQueue(Queue<Integer> q, int opCount) {
+    private static double testQueue(Integer[] testData, boolean isHeapify) {
 
         long startTime = System.nanoTime();
-
-        Random random = new Random();
-        for (int i = 0; i < opCount; i++) {
-            q.enqueue(random.nextInt(Integer.MAX_VALUE));
+        MaxHeap<Integer> maxHeap;
+        if(isHeapify) {
+            maxHeap = new MaxHeap<>(testData);
+        } else {
+            maxHeap = new MaxHeap<>();
+            for(int num : testData) {
+                maxHeap.add(num);
+            }
         }
 
-        for (int i = 0; i < opCount; i++) {
-            q.dequeue();
+        int[] arr = new int[testData.length];
+        for(int i = 0; i < testData.length; i++) {
+            arr[i] = maxHeap.extractMax();
         }
+
+        for(int i = 1; i < testData.length; i++) {
+            if(arr[i-1] < arr[i])
+                System.out.println("error");
+        }
+
+        System.out.println("yes");
 
         long endTime = System.nanoTime();
         return (endTime - startTime) / 1000000000.0;
@@ -24,24 +36,38 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<String> words = new ArrayList<>();
-        if(FileOperation.readFile("pride-and-prejudice.txt", words)) {
-            System.out.println("total words: " + words.size());
-
-            BSTMap<String, Integer> bstMap = new BSTMap<>();
-            for(String word : words) {
-                if(bstMap.contains(word)) {
-                    bstMap.set(word, bstMap.get(word) + 1);
-                } else {
-                    bstMap.add(word, 1);
-                }
-            }
-            System.out.println(bstMap.getSize());
-            System.out.println(bstMap.get("pride"));
-            bstMap.remove("pride");
-            System.out.println(bstMap.get("pride"));
-
+        int n = 1000000;
+        Integer[] testData = new Integer[n];
+        Random random = new Random();
+        for(int i = 0; i < n; i++) {
+            testData[i] = random.nextInt(Integer.MAX_VALUE);
         }
+        double time1 = testQueue(testData, false);
+        System.out.println(time1);
+        double time2 = testQueue(testData, true);
+        System.out.println(time2);
+
+
+
+
+//        ArrayList<String> words = new ArrayList<>();
+//        if(FileOperation.readFile("pride-and-prejudice.txt", words)) {
+//            System.out.println("total words: " + words.size());
+//
+//            BSTMap<String, Integer> bstMap = new BSTMap<>();
+//            for(String word : words) {
+//                if(bstMap.contains(word)) {
+//                    bstMap.set(word, bstMap.get(word) + 1);
+//                } else {
+//                    bstMap.add(word, 1);
+//                }
+//            }
+//            System.out.println(bstMap.getSize());
+//            System.out.println(bstMap.get("pride"));
+//            bstMap.remove("pride");
+//            System.out.println(bstMap.get("pride"));
+//
+//        }
 
 
 //        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();

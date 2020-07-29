@@ -22,6 +22,14 @@ public class Array<E> {
         size = 0;
     }
 
+    public Array(E[] arr) {
+        data = (E[]) new Object[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            data[i] = arr[i];
+        }
+        size = arr.length;
+    }
+
     /**
      * 默认构造函数，默认数组容量为10
      */
@@ -206,6 +214,20 @@ public class Array<E> {
             newData[i] = data[i];
         }
         data = newData;
+    }
+
+    /**
+     * 交换i,j索引处的元素值
+     * @param i
+     * @param j
+     */
+    public void swap(int i, int j) {
+        if(i < 0 || i >= size || j < 0 || j >= size) {
+            throw new IllegalArgumentException("swap fail1，Illegal index");
+        }
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
     }
 
     @Override
