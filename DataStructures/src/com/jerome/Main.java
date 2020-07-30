@@ -36,16 +36,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int n = 1000000;
-        Integer[] testData = new Integer[n];
-        Random random = new Random();
-        for(int i = 0; i < n; i++) {
-            testData[i] = random.nextInt(Integer.MAX_VALUE);
-        }
-        double time1 = testQueue(testData, false);
-        System.out.println(time1);
-        double time2 = testQueue(testData, true);
-        System.out.println(time2);
+        Integer[] nums = {-2, 0, 3, -5, 2, 1};
+        SegmentTree<Integer> segmentTree = new SegmentTree<>(nums, Math::max);
+
+        System.out.println(segmentTree);
+        System.out.println(segmentTree.query(0, 5));
+//        int n = 1000000;
+//        Integer[] testData = new Integer[n];
+//        Random random = new Random();
+//        for(int i = 0; i < n; i++) {
+//            testData[i] = random.nextInt(Integer.MAX_VALUE);
+//        }
+//        double time1 = testQueue(testData, false);
+//        System.out.println(time1);
+//        double time2 = testQueue(testData, true);
+//        System.out.println(time2);
 
 
 
