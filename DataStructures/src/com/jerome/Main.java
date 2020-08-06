@@ -5,30 +5,24 @@ import java.util.Random;
 
 public class Main {
 
-    private static double testQueue(Integer[] testData, boolean isHeapify) {
+    private static double testUnion(UnionFind testUn, int m) {
 
+        int size = testUn.getSize();
         long startTime = System.nanoTime();
-        MaxHeap<Integer> maxHeap;
-        if(isHeapify) {
-            maxHeap = new MaxHeap<>(testData);
-        } else {
-            maxHeap = new MaxHeap<>();
-            for(int num : testData) {
-                maxHeap.add(num);
-            }
+        Random random = new Random();
+
+        for (int i = 0; i < m; i++) {
+            int a = random.nextInt(size);
+            int b = random.nextInt(size);
+            testUn.unionElements(a, b);
         }
 
-        int[] arr = new int[testData.length];
-        for(int i = 0; i < testData.length; i++) {
-            arr[i] = maxHeap.extractMax();
+        for (int i = 0; i < m; i++) {
+            int a = random.nextInt(size);
+            int b = random.nextInt(size);
+            testUn.isConnected(a, b);
         }
 
-        for(int i = 1; i < testData.length; i++) {
-            if(arr[i-1] < arr[i])
-                System.out.println("error");
-        }
-
-        System.out.println("yes");
 
         long endTime = System.nanoTime();
         return (endTime - startTime) / 1000000000.0;
@@ -36,11 +30,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Integer[] nums = {-2, 0, 3, -5, 2, 1};
-        SegmentTree<Integer> segmentTree = new SegmentTree<>(nums, Math::max);
+        int m = 1000000;
+        int size = 1000000;
 
-        System.out.println(segmentTree);
-        System.out.println(segmentTree.query(0, 5));
+        UnionFind unionFind = new UnionFind(size);
+        double time = testUnion(unionFind, m);
+        System.out.println(time);
+
+
+//        Integer[] nums = {-2, 0, 3, -5, 2, 1};
+//        SegmentTree<Integer> segmentTree = new SegmentTree<>(nums, Math::max);
+//
+//        System.out.println(segmentTree);
+//        System.out.println(segmentTree.query(0, 5));
 //        int n = 1000000;
 //        Integer[] testData = new Integer[n];
 //        Random random = new Random();

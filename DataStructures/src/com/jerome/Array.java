@@ -85,7 +85,7 @@ public class Array<E> {
     public void add(int index, E e) {
 
         if(index < 0 || index > size) {
-            throw new IllegalArgumentException("add fail2，Illegal index");
+            throw new IllegalArgumentException("add fail，Illegal index");
         }
 
         if(size == data.length) {

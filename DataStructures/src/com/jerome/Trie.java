@@ -39,12 +39,15 @@ public class Trie {
         return size;
     }
 
-    public void add(String words) {
+    /**
+     * 向trie中加入新的单词word
+     * @param word
+     */
+    public void add(String word) {
 
         Node cur = root;
-        for(int i = 0; i < words.length(); i++) {
-            char c = words.charAt(i);
-
+        for(int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
             if(cur.next.get(c) == null) {
                 cur.next.put(c, new Node());
             }
@@ -55,7 +58,43 @@ public class Trie {
             cur.isWord = true;
             size++;
         }
-
     }
 
+    /**
+     * 查询trie中是否存在单词word
+     * @param word
+     * @return
+     */
+    public boolean contains(String word) {
+
+        Node cur = root;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if(cur.next.get(c) == null) {
+                return false;
+            }
+            cur = cur.next.get(c);
+        }
+
+        return cur.isWord;
+    }
+
+    /**
+     * 判断trie中的单词是否有以prefix为前缀
+     * @param prefix
+     * @return
+     */
+    public boolean isPrefix(String prefix) {
+
+        Node cur = root;
+        for (int i = 0; i < prefix.length(); i++) {
+            char c = prefix.charAt(i);
+            if(cur.next.get(c) == null) {
+                return false;
+            }
+            cur = cur.next.get(c);
+        }
+
+        return true;
+    }
 }
